@@ -16,7 +16,7 @@
     <div class="wrapper">
       <header>
         <h1>Aisel</h1>
-        <p>CMS based on Symfony2 and AngularJS</p>
+        <p>Highload CMS based on Symfony2 and AngularJS</p>
 
         <p class="view"><a href="https://github.com/ivanproskuryakov/Aisel">View the Project on GitHub <small>ivanproskuryakov/Aisel</small></a></p>
 
@@ -32,11 +32,11 @@
 <a name="about-" class="anchor" href="#about-"><span class="octicon octicon-link"></span></a>About <a href="https://travis-ci.org/ivanproskuryakov/Aisel"><img src="https://travis-ci.org/ivanproskuryakov/Aisel.svg?branch=master" alt="Travis-CI"></a>
 </h2>
 
-<p>Aisel is open source project based on combination Symfony2(backend) and AngularJS(frontend)</p>
+<p>Aisel is open source CMS for highload projects based on combination Symfony2(backend) and AngularJS(frontend)</p>
 
 <p>Project website: <a href="http://aisel.co/">http://aisel.co/</a><br>
-Sandbox frontend: <a href="http://sandbox.aisel.co/">http://sandbox.aisel.co/</a> [frontenduser/frontenduser]<br>
-Sandbox administration: <a href="http://sandbox.aisel.co/administration">http://sandbox.aisel.co/administration</a> [backenduser/backenduser]<br></p>
+Demo frontend: <a href="http://demo.aisel.co/">http://demo.aisel.co/</a> [frontenduser/frontenduser]<br>
+Demo administration: <a href="http://demo.aisel.co/administration">http://demo.aisel.co/administration</a> [backenduser/backenduser]<br></p>
 
 <p><a href="https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4"><img src="https://insight.sensiolabs.com/projects/e3761c26-4de8-4679-8645-ddedad0ae4a4/big.png" alt="SensioLabsInsight"></a><br></p>
 
@@ -46,8 +46,10 @@ Sandbox administration: <a href="http://sandbox.aisel.co/administration">http://
 <p>1.) cd to your website directory and download composer with:  <br>
 curl -sS <a href="https://getcomposer.org/installer">https://getcomposer.org/installer</a> | php<br>
 2.) Create project, installer will ask you dbname, username, password, etc.. <br>
-php composer.phar create-project -s dev aisel/aisel - (create project)<br>
-3.) Create databasewith GUI tool like phpmyadmin or with command<br>
+php composer.phar create-project -s dev aisel/aisel<br>
+then set aisel as current directory with cd aisel/ and finish installation with commands bellow:<br></p>
+
+<p>3.) Create database with GUI tool like phpmyadmin or with command<br>
 php app/console doctrine:schema:create<br>
 3.) Load initial data in database with<br>
 php app/console doctrine:fixtures:load<br>
@@ -56,8 +58,11 @@ php app/console cache:clear --env=dev<br>
 6.) Install frontend dependencies with<br>
 bower install<br>
 7.) Important: webserver needs permissions to write cache in aisel/app/cache/<br>
+Mac users:<br>
 sudo chmod +a "_www allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs<br>
 sudo chmod +a "<code>whoami</code> allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs<br>
+Linux users:<br>
+sudo chown -R www-data:www-data  app/cache app/logs<br>
 8.) Add Links to CSS and JS files<br>
 php app/console assets:install web --symlink</p>
 
@@ -65,8 +70,8 @@ php app/console assets:install web --symlink</p>
 and frontend at <a href="http://websitename.dev/">http://websitename.dev/</a></p>
 
 <h2>
-<a name="behat-testing" class="anchor" href="#behat-testing"><span class="octicon octicon-link"></span></a>
-<a href="http://behat.org">Behat</a> testing</h2>
+<a name="behat-tests" class="anchor" href="#behat-tests"><span class="octicon octicon-link"></span></a>
+<a href="http://behat.org">Behat</a> tests</h2>
 
 <p>Run Behat using the following command to test backend:</p>
 
@@ -74,8 +79,8 @@ and frontend at <a href="http://websitename.dev/">http://websitename.dev/</a></p
 </pre></div>
 
 <h2>
-<a name="karma-testing" class="anchor" href="#karma-testing"><span class="octicon octicon-link"></span></a>
-<a href="http://karma-runner.github.io/">Karma</a> testing</h2>
+<a name="karma-tests" class="anchor" href="#karma-tests"><span class="octicon octicon-link"></span></a>
+<a href="http://karma-runner.github.io/">Karma</a> tests</h2>
 
 <p>Karma unit tests:</p>
 
@@ -97,7 +102,7 @@ and frontend at <a href="http://websitename.dev/">http://websitename.dev/</a></p
 
 <p>Task: <b>php app/console aisel:sitemap:generate</b><br>
 This command will generate sitemap.xml<br>
-Example: <a href="http://sandbox.aisel.co/sitemap.xml">http://sandbox.aisel.co/sitemap.xml</a><br></p>
+Example: <a href="http://demo.aisel.co/sitemap.xml">http://demo.aisel.co/sitemap.xml</a><br></p>
 
 <h2>
 <a name="seo-for-js-website" class="anchor" href="#seo-for-js-website"><span class="octicon octicon-link"></span></a>SEO for JS website</h2>
@@ -106,23 +111,11 @@ Example: <a href="http://sandbox.aisel.co/sitemap.xml">http://sandbox.aisel.co/s
 Snapshots handled by <a href="https://github.com/localnerve/html-snapshots">https://github.com/localnerve/html-snapshots</a><br>
 To generate snapshots run in terminal: <b>node snapshots.js</b><br>
 Task will create snapshots in directory web/snapshots. In the end you will need to test like this:<br>
-For page <a href="http://sandbox.aisel.co/#!/pages/">http://sandbox.aisel.co/#!/pages/</a> you need type in terminal: <br>curl <a href="http://sandbox.aisel.co/?_escaped_fragment_=/pages/">http://sandbox.aisel.co/?_escaped_fragment_=/pages/</a><br>
-Google index: <a href="https://www.google.ru/search?q=site%3Asandbox.aisel.co">https://www.google.ru/search?q=site%3Asandbox.aisel.co</a><br>
-Full info how to make SEO for JS website read here: <a href="https://developers.google.com/webmasters/ajax-crawling/docs/specification">https://developers.google.com/webmasters/ajax-crawling/docs/specification</a>
-s</p>
+For page <a href="http://demo.aisel.co/#!/pages/">http://demo.aisel.co/#!/pages/</a> you need type in terminal: <br>curl <a href="http://demo.aisel.co/?_escaped_fragment_=/pages/">http://demo.aisel.co/?_escaped_fragment_=/pages/</a><br>
+Google index: <a href="https://www.google.com/search?q=site%3Ademo.aisel.co">https://www.google.com/search?q=site%3Ademo.aisel.co</a><br>
+Full info how to make SEO for JS website read here: <a href="https://developers.google.com/webmasters/ajax-crawling/docs/specification">https://developers.google.com/webmasters/ajax-crawling/docs/specification</a></p>
 
 <h2>
-<a name="speed-test" class="anchor" href="#speed-test"><span class="octicon octicon-link"></span></a>Speed Test</h2>
-
-<ul>
-<li>Clean Ubuntu with 512 RAM<br>
-</li>
-<li>Symfony2 in DEV environment<br>
-</li>
-<li>No server or MySQL tweaks<br><a href="http://tools.pingdom.com/fpt/#!/XzytX/http://sandbox.aisel.co/#!/">http://tools.pingdom.com/fpt/#!/XzytX/http://sandbox.aisel.co/#!/</a> - 704ms
-<a href="http://tools.pingdom.com/fpt/#!/b3BHG9/http://sandbox.aisel.co/#!/pages/">http://tools.pingdom.com/fpt/#!/b3BHG9/http://sandbox.aisel.co/#!/pages/</a> -  773ms
-<a href="http://tools.pingdom.com/fpt/#!/dZajwY/http://sandbox.aisel.co/#!/page/userpage-10/">http://tools.pingdom.com/fpt/#!/dZajwY/http://sandbox.aisel.co/#!/page/userpage-10/</a> - 751ms</li>
-</ul><h2>
 <a name="bug-tracking" class="anchor" href="#bug-tracking"><span class="octicon octicon-link"></span></a>Bug tracking</h2>
 
 <p>Project uses <a href="https://github.com/ivanproskuryakov/Aisel/issues">GitHub issues</a>.
@@ -138,6 +131,15 @@ If you have found bug, please create an issue.</p>
 
 <p>Aisel was originally created by <a href="http://www.magazento.com">Ivan Proskuryakov</a>.
 See the list of <a href="https://github.com/ivanproskuryakov/Aisel/graphs/contributors">contributors</a>.</p>
+
+<h2>
+<a name="speed-test" class="anchor" href="#speed-test"><span class="octicon octicon-link"></span></a>Speed Test</h2>
+
+<p>Clean Ubuntu with 512 RAM<br>
+Symfony2 in DEV environment<br>
+No server or MySQL tweaks<br><a href="http://tools.pingdom.com/fpt/#!/dpgreK/http://demo.aisel.co/#!/">http://tools.pingdom.com/fpt/#!/dpgreK/http://demo.aisel.co/#!/</a> - 539ms
+<a href="http://tools.pingdom.com/fpt/#!/OVkNs/http://demo.aisel.co/#!/pages/">http://tools.pingdom.com/fpt/#!/OVkNs/http://demo.aisel.co/#!/pages/</a> -  1.05s
+<a href="http://tools.pingdom.com/fpt/#!/c7MfRS/http://demo.aisel.co/#!/page/userpage-10/">http://tools.pingdom.com/fpt/#!/c7MfRS/http://demo.aisel.co/#!/page/userpage-10/</a> - 501ms</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/ivanproskuryakov">ivanproskuryakov</a></p>
